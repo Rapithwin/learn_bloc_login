@@ -24,8 +24,9 @@ class AuthenticationBloc
   final UserRepository _userRepostiory;
 
   Future<void> _onSubscriptionRequested(
-      AuthenticationSubscriptionRequested event,
-      Emitter<AuthenticationState> emit) {
+    AuthenticationSubscriptionRequested event,
+    Emitter<AuthenticationState> emit,
+  ) {
     return emit.onEach(_authenticationRepository.status,
         onData: (AuthenticationStatus status) async {
       switch (status) {
@@ -43,5 +44,21 @@ class AuthenticationBloc
           return emit(const AuthenticationState.unknown());
       }
     }, onError: addError);
+  }
+
+  void _onLogoutPressed(
+    AuthenticationLogoutPressed event,
+    Emitter<AuthenticationState> emit,
+  ) {
+    _authenticationRepository.logOut();
+  }
+
+  Future<User?> _tryGetUser() async {
+    try {
+      final user = await _userRepostiory.getUser();
+      return user;
+    } catch (_) {
+      return null;
+    }
   }
 }
