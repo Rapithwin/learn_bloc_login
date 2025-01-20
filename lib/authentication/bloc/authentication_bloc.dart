@@ -6,12 +6,15 @@ import 'package:user_repository/user_repository.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
+/// The [AuthenticationBloc] manages the authentication state of
+///  the application which is used to determine things like
+/// whether or not to start the user at a login page or a home page.
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc(
-      {required AuthenticationRepository authenticationRepository,
-      required UserRepository userRepository})
-      : _authenticationRepository = authenticationRepository,
+  AuthenticationBloc({
+    required AuthenticationRepository authenticationRepository,
+    required UserRepository userRepository,
+  })  : _authenticationRepository = authenticationRepository,
         _userRepostiory = userRepository,
         super(const AuthenticationState.unknown()) {
     on<AuthenticationEvent>((event, emit) {
@@ -23,6 +26,9 @@ class AuthenticationBloc
   final AuthenticationRepository _authenticationRepository;
   final UserRepository _userRepostiory;
 
+  /// the [AuthenticationBloc] uses `emit.onEach` to subscribe to the status stream
+  /// of the [AuthenticationRepository] and emit a state in response to each
+  /// [AuthenticationStatus].
   Future<void> _onSubscriptionRequested(
     AuthenticationSubscriptionRequested event,
     Emitter<AuthenticationState> emit,
