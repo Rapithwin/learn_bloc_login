@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
+/// This widget is responsible for creating/providing [AuthenticationBloc]
+/// which will be consumed by [AppView].
 class App extends StatefulWidget {
   const App({super.key});
 
