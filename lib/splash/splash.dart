@@ -1,1 +1,1 @@
-export 'package:bloc_login/splash/view/splash_view.dart';
+export 'view/splash_view.dart';
