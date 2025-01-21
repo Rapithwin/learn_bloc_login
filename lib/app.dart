@@ -33,10 +33,13 @@ class _AppState extends State<App> {
     return RepositoryProvider.value(
       value: _authenticationRepository,
       child: BlocProvider(
+        lazy: false,
         create: (_) => AuthenticationBloc(
           authenticationRepository: _authenticationRepository,
           userRepository: _userRepository,
-        ),
+        )..add(
+            AuthenticationSubscriptionRequested(),
+          ),
         child: const AppView(),
       ),
     );
