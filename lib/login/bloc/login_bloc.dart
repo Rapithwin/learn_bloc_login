@@ -32,4 +32,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ),
     );
   }
+
+  void _onPasswordChanged(
+    LoginPasswordChanged event,
+    Emitter<LoginState> emit,
+  ) {
+    final password = Password.dirty(event.password);
+
+    emit(
+      state.copyWith(
+        password: password,
+        isValid: Formz.validate(
+          [state.username, password],
+        ),
+      ),
+    );
+  }
 }
