@@ -7,6 +7,8 @@ import 'package:formz/formz.dart';
 part 'login_state.dart';
 part 'login_event.dart';
 
+/// responsible for reacting to user interactions in the `LoginForm`
+/// and handling the validation and submission of the form.
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required AuthenticationRepository authenticationRepository})
       : _authenticationRepository = authenticationRepository,
