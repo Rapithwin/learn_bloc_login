@@ -13,12 +13,12 @@ final class LoginState extends Equatable {
     this.status = FormzSubmissionStatus.initial,
   });
 
-  LoginState copyWith(
+  LoginState copyWith({
     Username? username,
     Password? password,
     bool? isValid,
     FormzSubmissionStatus? status,
-  ) {
+  }) {
     return LoginState(
       username: username ?? this.username,
       password: password ?? this.password,
