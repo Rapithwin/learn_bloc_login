@@ -1,5 +1,6 @@
 import 'package:authentication_repository/authenticationi_repository.dart';
 import 'package:bloc_login/authentication/bloc/authentication_bloc.dart';
+import 'package:bloc_login/home/view/home_page.dart';
 import 'package:bloc_login/login/view/login_page.dart';
 import 'package:bloc_login/splash/splash.dart';
 import 'package:flutter/material.dart';
