@@ -38,8 +38,6 @@ class LoginForm extends StatelessWidget {
 }
 
 class _UsernameInput extends StatelessWidget {
-  const _UsernameInput();
-
   @override
   Widget build(BuildContext context) {
     final displayError =
@@ -73,6 +71,27 @@ class _PasswordInput extends StatelessWidget {
         labelText: 'passowrd',
         errorText: displayError != null ? 'invalid password' : null,
       ),
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final isInProgressOrSuccess = context.select(
+      (LoginBloc bloc) => bloc.state.status.isInProgressOrSuccess,
+    );
+
+    if (isInProgressOrSuccess) return const CircularProgressIndicator();
+
+    final isValid = context.select((LoginBloc bloc) => bloc.state.isValid);
+
+    return ElevatedButton(
+      key: const Key('loginForm_continue_raisedButton'),
+      onPressed: isValid
+          ? () => context.read<LoginBloc>().add(const LoginSubmitted())
+          : null,
+      child: const Text('Login'),
     );
   }
 }
