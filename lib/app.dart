@@ -1,5 +1,6 @@
 import 'package:authentication_repository/authenticationi_repository.dart';
 import 'package:bloc_login/authentication/bloc/authentication_bloc.dart';
+import 'package:bloc_login/login/view/login_page.dart';
 import 'package:bloc_login/splash/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +76,7 @@ class _AppViewState extends State<AppView> {
                   (route) => false,
                 );
               case AuthenticationStatus.unauthenticated:
-                _navigator.pushNamedAndRemoveUntil<void>(
+                _navigator.pushAndRemoveUntil<void>(
                   LoginPage.route(),
                   (route) => false,
                 );
