@@ -25,13 +25,33 @@ class LoginForm extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _usernameInput(),
+            _UsernameInput(),
             const Padding(padding: EdgeInsets.all(12)),
-            _passwordInput(),
+            _PasswordInput(),
             const Padding(padding: EdgeInsets.all(12)),
-            _loginButton(),
+            _LoginButton(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _UsernameInput extends StatelessWidget {
+  const _UsernameInput();
+
+  @override
+  Widget build(BuildContext context) {
+    final displayError =
+        context.select((LoginBloc bloc) => bloc.state.username.displayError);
+    return TextField(
+      key: const Key("loginForm_usernameInput_textField"),
+      onChanged: (username) => context.read<LoginBloc>().add(
+            LoginUsernameChanged(username),
+          ),
+      decoration: InputDecoration(
+        labelText: 'username',
+        errorText: displayError != null ? 'invalid username' : null,
       ),
     );
   }
