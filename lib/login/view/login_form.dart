@@ -56,3 +56,23 @@ class _UsernameInput extends StatelessWidget {
     );
   }
 }
+
+class _PasswordInput extends StatelessWidget {
+  const _PasswordInput();
+
+  @override
+  Widget build(BuildContext context) {
+    final displayError =
+        context.select((LoginBloc bloc) => bloc.state.password.displayError);
+    return TextField(
+      key: const Key("loginForm_passwordInput_textField"),
+      onChanged: (username) => context.read<LoginBloc>().add(
+            LoginPasswordChanged(username),
+          ),
+      decoration: InputDecoration(
+        labelText: 'passowrd',
+        errorText: displayError != null ? 'invalid password' : null,
+      ),
+    );
+  }
+}
