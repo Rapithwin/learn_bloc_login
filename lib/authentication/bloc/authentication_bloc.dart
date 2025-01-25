@@ -17,10 +17,8 @@ class AuthenticationBloc
   })  : _authenticationRepository = authenticationRepository,
         _userRepostiory = userRepository,
         super(const AuthenticationState.unknown()) {
-    on<AuthenticationEvent>((event, emit) {
-      on<AuthenticationSubscriptionRequested>(_onSubscriptionRequested);
-      on<AuthenticationLogoutPressed>(_onLogoutPressed);
-    });
+    on<AuthenticationSubscriptionRequested>(_onSubscriptionRequested);
+    on<AuthenticationLogoutPressed>(_onLogoutPressed);
   }
 
   final AuthenticationRepository _authenticationRepository;
